@@ -35,7 +35,7 @@ Rhombus::Rhombus(float dL, float dS) {
 
 }
 
-/// @brief constructor 
+/// @brief constructor with format
 /// @param dL diagonal (longer)
 /// @param dS diagonal (shorter)
 /// @param sf struct of type Format
@@ -64,7 +64,7 @@ Rhombus::~Rhombus() {
 }
 
 /// @brief copy constructor 
-/// @param o reference to the object that should be copied 
+/// @param r reference to the object that should be copied 
 Rhombus::Rhombus(const Rhombus &r):Quadrilateral(*r.shapef) { 
 
 	cout << "Rhombus - copy constructor" << endl;
@@ -74,7 +74,7 @@ Rhombus::Rhombus(const Rhombus &r):Quadrilateral(*r.shapef) {
 }
 
 /// @brief overload of operator = 
-/// @param o reference to the object on the right side of the operator 
+/// @param r reference to the object on the right side of the operator 
 /// @return reference to the object on the left side of the operator 
 Rhombus& Rhombus::operator=(const Rhombus &r) { 
 
@@ -88,7 +88,7 @@ Rhombus& Rhombus::operator=(const Rhombus &r) {
 
 /// @brief overload of operator == 
 /// @param r reference to the object on the right side of the operator 
-/// @return true if the two objects have the same width and the same length  
+/// @return true if the two objects have the same width and the same length and the same format
 bool Rhombus::operator==(const Rhombus &r) { 
 
 	if (r.diagL == diagL && r.diagS == diagS && r.shapef->fill == shapef->fill && r.shapef->outline == shapef->outline)

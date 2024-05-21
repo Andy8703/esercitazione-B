@@ -1,3 +1,9 @@
+/// \file CQuadrilateral.cpp
+///	\brief class Quadrilateral: implementation of the functions
+///
+///	Details.
+///
+
 #include "CQuadrilateral.h"
 
 /// @brief default constructor 
@@ -9,7 +15,7 @@ Quadrilateral::Quadrilateral() {
 
 } 
 
-/// @brief constructor 
+/// @brief constructor with format
 /// sf a struct of type Format with infos on fill color and outline color
 Quadrilateral::Quadrilateral(Format sf) {
 
@@ -91,7 +97,7 @@ void Quadrilateral::Init() {
 
 
 /// @brief initialization of the object as a copy of an object 
-/// @param r reference to the object that should be copied 
+/// @param o reference to the object that should be copied 
 void Quadrilateral::Init(const Quadrilateral &o) {
 	Reset();
 	Init();
@@ -151,7 +157,6 @@ void Quadrilateral::GetFormat(Format &sf) {
 } 
 
 /// @brief get the fill color of the object 
-/// @param fill fill color 
 Color Quadrilateral::GetFill() {
 	return shapef->fill;
 	

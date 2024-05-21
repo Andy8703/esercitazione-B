@@ -34,7 +34,7 @@ Rectangle::Rectangle(float w, float h) {
 
 }
 
-/// @brief constructor 
+/// @brief constructor with format 
 /// @param w width of the rectangle
 /// @param h height of the rectangle 
 /// @param sf struct of type Format
@@ -62,7 +62,7 @@ Rectangle::~Rectangle() {
 }
 
 /// @brief copy constructor 
-/// @param o reference to the object that should be copied 
+/// @param r reference to the object that should be copied 
 Rectangle::Rectangle(const Rectangle &r):Quadrilateral(*r.shapef) { 
 
 	cout << "Rectangle - copy constructor" << endl;
@@ -72,7 +72,7 @@ Rectangle::Rectangle(const Rectangle &r):Quadrilateral(*r.shapef) {
 }
 
 /// @brief overload of operator = 
-/// @param o reference to the object on the right side of the operator 
+/// @param r reference to the object on the right side of the operator 
 /// @return reference to the object on the left side of the operator 
 Rectangle& Rectangle::operator=(const Rectangle &r) { 
 
@@ -86,7 +86,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r) {
 
 /// @brief overload of operator == 
 /// @param r reference to the object on the right side of the operator 
-/// @return true if the two objects have the same width and the same length  
+/// @return true if the two objects have the same width and the same length and the same format
 bool Rectangle::operator==(const Rectangle &r) { 
 
 	if (r.width == width && r.height == height && r.shapef->fill == shapef->fill && r.shapef->outline == shapef->outline)
