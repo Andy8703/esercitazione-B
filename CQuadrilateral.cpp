@@ -13,7 +13,11 @@ Quadrilateral::Quadrilateral() {
 /// sf a struct of type Format with infos on fill color and outline color
 Quadrilateral::Quadrilateral(Format sf) {
 
-	
+	cout << "Quadrilateral - constructor with format" << endl;
+
+	Init();
+
+	*shapef=sf;
 
 } 
 
@@ -31,6 +35,7 @@ Quadrilateral::~Quadrilateral() {
 
 	cout << "Quadrilateral - destructor" << endl;
 	Reset();
+	delete(shapef);
 
 }  
 
@@ -70,13 +75,18 @@ bool Quadrilateral::operator==(const Quadrilateral &o) {
 }
 
 
-/// @brief default initialization of the object
+/// @brief default initialization of the object. Format is all black by default
 void Quadrilateral::Init() {
 	
+	Format def;
+	shapef=new(Format);
+
+	def.fill = k;
+	def.outline = k;
 		
 	SetSides(0.,0.,0.,0.);
-	
-		
+	SetFormat(def);
+
 }
 
 
@@ -89,6 +99,7 @@ void Quadrilateral::Init(const Quadrilateral &o) {
 	sides[1] = o.sides[1]; 
 	sides[2] = o.sides[2]; 
 	sides[3] = o.sides[3];
+	shapef = o.shapef;
 	
 }
 
@@ -96,6 +107,8 @@ void Quadrilateral::Init(const Quadrilateral &o) {
 void Quadrilateral::Reset() {
 	
 	sides[0]= sides[1]= sides[2]= sides[3] = 0.;
+	shapef->fill = k;
+	shapef->outline = k;
 	
 }
 
@@ -133,27 +146,30 @@ void Quadrilateral::GetSides(float &s0, float &s1, float &s2, float &s3) {
 /// @param sf  a struct of type Format to be filled with the format fields
 void Quadrilateral::GetFormat(Format &sf) {
 
+	sf = *shapef;
+
 } 
 
 /// @brief get the fill color of the object 
 /// @param fill fill color 
 Color Quadrilateral::GetFill() {
-	
+	return shapef->fill;
 	
 }
 
 /// @brief get the outline color of the object 
 /// @param outline outline color 
 Color Quadrilateral::GetOutline() {
-
+	return shapef->outline;
 	
 }
 
 
-/// @brief set the format of the object 
+/// @brief set the format of the object.
 /// @param sf a struct of type Format filled with the format fields
 void Quadrilateral::SetFormat(Format sf) {
-	
+
+	*shapef = sf;
 	
 }
 
@@ -161,6 +177,7 @@ void Quadrilateral::SetFormat(Format sf) {
 /// @param fill fill color 
 void Quadrilateral::SetFill(Color fill) {
 
+	shapef->fill = fill;
 	
 }
 
@@ -168,6 +185,7 @@ void Quadrilateral::SetFill(Color fill) {
 /// @param outline outline color 
 void Quadrilateral::SetOutline(Color outline) {
 	
+	shapef->outline = outline;
 	
 }
 
@@ -200,6 +218,8 @@ void Quadrilateral::Dump() {
 	cout << endl;
 	
 	cout << "Sides = " << sides[0] << "; " << sides[1] << "; " << sides[2] << "; " << sides[3] << "; " << endl;
+	cout << "Fill = " << shapef->fill << "; " << endl;
+	cout << "Outline = " << shapef->outline << "; " << endl;
 	cout << "Perimeter = " << GetPerimeter() << endl;
 	cout << "Area = " << GetArea() << endl;
 	cout << "------------------" << endl; 

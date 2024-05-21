@@ -39,9 +39,18 @@ Rhombus::Rhombus(float dL, float dS) {
 /// @param dL diagonal (longer)
 /// @param dS diagonal (shorter)
 /// @param sf struct of type Format
-Rhombus::Rhombus(float dL, float dS, Format sf) {
+Rhombus::Rhombus(float dL, float dS, Format sf):Quadrilateral(sf) {
 
-	
+	Init();
+
+	cout << "Rhombus - constructor with format" << endl;
+
+	if (dL <= 0. || dS <= 0.) {
+		WarningMessage("constructor with format: diagonals should be > 0"); 
+		SetDim(0,0);
+	}
+	else
+		SetDim(dL,dS);
 
 
 }
@@ -56,7 +65,7 @@ Rhombus::~Rhombus() {
 
 /// @brief copy constructor 
 /// @param o reference to the object that should be copied 
-Rhombus::Rhombus(const Rhombus &r) { 
+Rhombus::Rhombus(const Rhombus &r):Quadrilateral(*r.shapef) { 
 
 	cout << "Rhombus - copy constructor" << endl;
 
@@ -82,7 +91,7 @@ Rhombus& Rhombus::operator=(const Rhombus &r) {
 /// @return true if the two objects have the same width and the same length  
 bool Rhombus::operator==(const Rhombus &r) { 
 
-	if (r.diagL == diagL && r.diagS == diagS)
+	if (r.diagL == diagL && r.diagS == diagS && r.shapef->fill == shapef->fill && r.shapef->outline == shapef->outline)
 		return true;
 		
 	return false;
@@ -101,6 +110,7 @@ void Rhombus::Init(const Rhombus &r) {
 	
 	Init();
 	SetDim(r.diagL,r.diagS);
+	shapef=r.shapef;
 	
 }
 
@@ -159,7 +169,7 @@ float Rhombus::GetDiagS() {
 /// @return side 
 float Rhombus::GetSide() {
 
-	return sqrt(diagL*diagL/4. + diagS*diagS/4.);
+	return sqrt(diagL*diagL/4 + diagS*diagS/4);
 
 }
 
@@ -196,7 +206,7 @@ void Rhombus::GetDim(float &dL, float &dS) {
 /// @return the area 
 float Rhombus::Area() {
 	
-	return (diagL*diagS/2.);
+	return (diagL*diagS/2);
 }
 
 
@@ -238,7 +248,10 @@ void Rhombus::Dump() {
 
 /// @brief to draw a rhombus
 void Rhombus::Drawing() {
-	
+
+	cout << "Sto disegnando un rombo di diagonale minore " << diagS << " e diagonale maggiore " << diagL;
+	cout << " con sfondo " << shapef->fill << " e bordo " << shapef->outline << "; " << endl;
+
 }
 
 

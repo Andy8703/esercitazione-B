@@ -38,9 +38,18 @@ Rectangle::Rectangle(float w, float h) {
 /// @param w width of the rectangle
 /// @param h height of the rectangle 
 /// @param sf struct of type Format
-Rectangle::Rectangle(float w, float h, Format sf) {
+Rectangle::Rectangle(float w, float h, Format sf):Quadrilateral(sf) {
 
-	
+	Init();
+
+	cout << "Rectangle - constructor" << endl;
+
+	if (w <= 0. || h <= 0.) {
+		WarningMessage("constructor with format: width and height should be > 0"); 
+		SetDim(0,0);
+	}
+	else
+		SetDim(w,h);
 
 }
 
@@ -54,7 +63,7 @@ Rectangle::~Rectangle() {
 
 /// @brief copy constructor 
 /// @param o reference to the object that should be copied 
-Rectangle::Rectangle(const Rectangle &r) { 
+Rectangle::Rectangle(const Rectangle &r):Quadrilateral(*r.shapef) { 
 
 	cout << "Rectangle - copy constructor" << endl;
 
@@ -80,7 +89,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r) {
 /// @return true if the two objects have the same width and the same length  
 bool Rectangle::operator==(const Rectangle &r) { 
 
-	if (r.width == width && r.height == height)
+	if (r.width == width && r.height == height && r.shapef->fill == shapef->fill && r.shapef->outline == shapef->outline)
 		return true;
 		
 	return false;
@@ -99,6 +108,7 @@ void Rectangle::Init(const Rectangle &r) {
 		
 	Init();
 	SetDim(r.width,r.height);
+	shapef=r.shapef;
 	
 }
 
@@ -222,12 +232,7 @@ void Rectangle::Dump() {
 
 /// @brief to draw a rectangle
 void Rectangle::Drawing() {
-	
+	cout << "Sto disegnando un rettangolo di base " << width << " e altezza " << height;
+	cout << " con sfondo " << shapef->fill << " e bordo " << shapef->outline << "; " << endl;
 
 }
-
-
-
-
-
-
