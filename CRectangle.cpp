@@ -108,7 +108,7 @@ void Rectangle::Init(const Rectangle &r) {
 		
 	Init();
 	SetDim(r.width,r.height);
-	shapef=r.shapef;
+	*shapef=*r.shapef;
 	
 }
 
