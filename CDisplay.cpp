@@ -111,6 +111,11 @@ void Display::Add_shape()
 /// @param index index of the array
 void Display::Remove_shape(int index)
 {
+    if (array_forme[index] == NULL)
+    {
+        WarningMessage("Forma non esistente");
+        return;
+    }
     delete(array_forme[index]);
     array_forme[index] = NULL;
 }
@@ -120,7 +125,10 @@ void Display::Remove_all()
 {
     for(int i=0; i<MAX_SHAPES; i++)
     {
+        if (array_forme[i] == NULL)
+            continue;
         delete(array_forme[i]);
+        array_forme[i] = NULL;
     }
 }
 

@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 
 #include "CQuadrilateral.h"
 #include "CRectangle.h"
@@ -55,4 +55,4 @@ int main() {
 
 	return 0;
 
-}
+}*/
